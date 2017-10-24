@@ -62,3 +62,12 @@ GET| `/message/:messageId/edit`|Edit a message by messageId
 POST| `/message/:messageId/edit` |updaete a message
 POST| `/message/:messageId/comment` |Create a comment
 GET|  `/message/:messageId/comment/:commentId/remove`|Remove a comment
+## Screenshot
+### Homepage for Registration and Login
+![alt text](Message_Board/Screenshot/Homepage.png " Homepage")
+### Post and List Messages
+![alt text](Message_Board/Screenshot/All_message.png " Post and list all message")
+### Leave a Comment to a Pecific Message and Check Palidrome  
+![alt text](Message_Board/Screenshot/comment.png " Comment")
+### Show Personal Message
+![alt text](Message_Board/Screenshot/My_messages.png " My message")
