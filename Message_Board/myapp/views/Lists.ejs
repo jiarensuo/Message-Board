@@ -1,0 +1,106 @@
+<html>
+<head>
+    <title>Post</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script type="text/javascript">
+        var count = 0;
+        var newmessage;
+        var Palindrome;
+        function isMessagePalindrome(content){
+            var content = content;
+            var removeChar = content.replace(/[^A-Z0-9]/ig, '').toLowerCase();
+            var checkPalindrome = removeChar.split('').reverse().join('');
+            if(removeChar === checkPalindrome){
+                Palindrome = "a ";
+            }else{
+                Palindrome = "not ";
+            }
+        }
+        function showComment(messageId){
+            console.log(messageId);
+            newmessage = messageId;
+            if(count == 0) {
+                var link = "/message/" + messageId;
+                console.log(messageId);
+                $.get(link, function (data, status) {
+                    if(data.length == 0){
+                        $('#' + newmessage).css('background-color', 'pink');
+                        $('#' + newmessage).css('border-color', 'pink');
+                        $('#' + newmessage).css('border-style', 'solid');
+                        $('#' + newmessage).append("<h4>No comments yet</h4>");
+                    }
+                    for (var i in data) {
+                       isMessagePalindrome(data[i].comment_content);
+                        if(data[i].current_user_id == data[i].comment_by_user_id){
+                            $('#' + newmessage).css('background-color', 'pink');
+                            $('#' + newmessage).css('border-color', 'pink');
+                            $('#' + newmessage).css('border-style', 'solid');
+                            $('#' + newmessage).append("<ul class='list-group' style='margin-left: 160px; margin-right: 40px'> <li class='list-group-item'> <div class='row'> <div class='col-xs-4 col-md-2'><img src='/images/" + data[i].photo + "' height='80px' width='80px' > </div> <div class='col-xs-8 col-md-10'> <div class='mic-info'><h4>By: <a href='/message?user= "+data[i].comment_by_user_id+"'> " + data[i].user_name + "</h4> </a> </div> <div class='comment-text'> <h3>" + data[i].comment_content + " </h3></div> </div> </div>  <div class='row'><div class='col-xs-offset-10 col-md-offset-11'><a href='/message/"+newmessage +"/comment/" + data[i].comment_id + "/remove'>remove </a> </div></div><div class='col-xs-offset-7 col-md-offset-8'><h5> This comment is " +Palindrome +"Palindrome  </h5 ></div></li> </div></ul>");
+                        }else{
+                            $('#' + newmessage).css('background-color', 'pink');
+                            $('#' + newmessage).css('border-color', 'pink');
+                            $('#' + newmessage).css('border-style', 'solid');
+                            $('#' + newmessage).append("<ul class='list-group' style='margin-left: 160px; margin-right: 40px'> <li class='list-group-item'> <div class='row'> <div class='col-xs-4 col-md-2'><img src='/images/" + data[i].photo + "' height='80px' width='80px' > </div> <div class='col-xs-8 col-md-10'> <div class='mic-info'><h4>By: <a href='/message?user= "+data[i].comment_by_user_id+"'> " + data[i].user_name + "</h4> </a> </div> <div class='comment-text'> <h3>" + data[i].comment_content + " </h3></div> </div> </div> <div class='col-xs-offset-7 col-md-offset-8'><h5> This comment is " +Palindrome +"Palindrome  </h5 ></div></li> </div></ul>");
+                        }
+
+                    }
+                });
+                count++;
+                $('#' + newmessage).empty();
+            }
+            else{
+                $('#' + newmessage).empty();
+                $('#' + newmessage).css('background-color', 'white');
+                $('#' + newmessage).css('border-color', 'white');
+                count = 0;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <%- include('header') %>
+    </div>
+    <!-- create-->
+    <div class="row">
+        <div class="media" style="margin-left:30px">
+            <div class="media-left">
+                <a href="/message?user=<%= user.user_id%>">
+                    <img class="media-object" src="/images/<%= user.photo%>" height="80px" width="80px">
+                    <p> <h4 style="margin-left: 10px"><%= user.user_name %></h4> </p>
+                </a>
+            </div>
+            <div class="media-body">
+                <form class="form-horizontal"  method="post" action="/message">
+                    <div class="form-group form-group-sm">
+                        <div class="col-sm-10" style="margin-left:50px">
+                            <h4><textarea class="form-control" name="message_content" rows="4" placeholder="Say something..."></textarea></h4>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-2 control-label" for="formGroupInputLarge"></label>
+                        <div class="center-block">
+                            <button type="submit" class="btn btn-info" id='btn' name="button" style="margin-left: 685px">submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- list post-->
+    <br>
+    <hr class="style1" style="">
+    <br>
+    <% message.forEach(function (message) { %>
+    <%- include('components/post-content', { message: message }) %>
+    <% }) %>
+    <%- include footer%>
+</div>
+</body>
+</html>

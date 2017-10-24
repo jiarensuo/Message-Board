@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>Welcome to Message Board</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+            <img src="/images/welcome_1.png" height="300px;" width="1000px;" style="margin-left: 100px;" />
+        <div class="row">
+            <%- include('components/notification') %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/images/welcome_2.png" height="500px;" width="500px;"/>
+        </div>
+        <div class="col-md-5">
+            <form class="form-horizontal" method="post" action='/addUser'>
+                <h3>
+                <div class="form-group input-group-lg">
+                    <label class="col-sm-4 control-label">User name</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="username" placeholder="User name">
+                    </div>
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <label class="col-sm-4 control-label">Password </label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <label class="col-sm-4 control-label">Re_password</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="re_password" placeholder="Confirm password">
+                    </div>
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <label class="col-sm-4 control-label">Sex </label>
+                    <div class="col-sm-8">
+                        <input type="radio"  name="sex" value="0"checked> Male
+                        <input type="radio"  name="sex" value="1"> Female
+                    </div>
+                </div>
+
+                <div class="form-group input-group-lg">
+                    <div class="col-center-block" >
+                      <center><button type="submit" class="btn btn-success btn-lg btn-block " name="button" >Sign up</button></center>
+                     </div>
+                </div>
+                </h3>
+             </form>
+                <h3> Having an account? Log in here!</h3>
+                <form class="form-horizontal" method="post" action="/login">
+                    <h3>
+                        <div class="form-group input-group-lg">
+                            <label class="col-sm-4 control-label">User name</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" placeholder="User name">
+                            </div>
+                        </div>
+                        <div class="form-group input-group-lg">
+                            <label class="col-sm-4 control-label">Password </label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group input-group-lg">
+                            <div class="col-center-block" >
+
+                                <center><button type="submit" class="btn btn-info btn-lg btn-block " name="button" >Log in</button></center>
+                            </div>
+                        </div>
+                    </h3>
+                </form>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
+

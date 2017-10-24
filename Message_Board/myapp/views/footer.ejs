@@ -1,0 +1,27 @@
+
+<script type="text/javascript">
+
+    $(function () {
+        $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea >.panel-google-plus-comment-form> button[type="reset"]').on('click', function(event) {
+            var $panel = $(this).closest('.panel-google-plus');
+            $comment = $panel.find('.panel-google-plus-comment');
+            $comment.find('textarea').val('');
+
+            $panel.toggleClass('panel-google-plus-show-comment');
+            if ($panel.hasClass('panel-google-plus-show-comment')) {
+                $comment.find('textarea').focus();
+            }
+        });
+        $('#btn1').on('click',function(event){
+            if($('#span1').hasClass('glyphicon glyphicon-heart-empty')){
+                $('#span1').attr("class","glyphicon glyphicon-heart");
+            }else if($('#span1').hasClass('glyphicon glyphicon-heart')){
+                $('#span1').attr("class","glyphicon glyphicon-heart-empty");
+            }
+        })
+
+    });
+</script>
+
+</body>
+</html>

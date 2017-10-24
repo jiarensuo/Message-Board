@@ -1,0 +1,41 @@
+ <div class="col-md-11 col-sm-11">
+        <div class=" panel-google-plus">
+            <div class="panel-heading">
+                <a href="/message?user=<%= user.user_id%>">
+                    <img class="img-circle pull-left" src="/images/<%= message.photo %>" style="margin-left: 10px" height="80px" width="80px" />
+                    <h4 style="margin-left: 150px"> <%= message.user_name %></h4>
+                </a>
+                <time class="comment-date" datetime="16-12-2014 01:05" style="margin-left: 55px"><i class="fa fa-clock-o"></i> <%= message.date %></time>
+                    <%if(message.message_user_id == user.user_id){%>
+                        <span class="item" style="margin-left: 390px"><a href="/message/<%= message.message_id %>/edit">Edit</a></span>
+                        <span class="item" style="margin-left: 30px"><a href="/message/<%= message.message_id %>/remove">Remove</a></span>
+                    <% }%>
+            </div>
+            <div class="panel-body" style="margin-left: 150px">
+                       <h3> <%= message.message_content %></h3>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="[ btn btn-default ]" id="btn2" style="margin-left: 30px"> <span class="[ glyphicon glyphicon-comment ]" onclick="showComment(<%= message.message_id %>)" >  </span>
+                </button>
+                <div class="input-placeholder" >Add a comment...</div>
+            </div>
+            <!-- -->
+                <div  id="<%= message.message_id%>" >
+                </div>
+            <!-- -->
+            <div class="panel-google-plus-comment">
+                <img class="img-circle" src="/images/<%= user.photo%>"  height="80px"; width="80px";/>
+                <p> <h4> <%= user.user_name%> </h4></p>
+                <div class="panel-google-plus-textarea">
+                    <form class="panel-google-plus-comment-form" method="post" action="/message/<%= message.message_id %>/comment">
+                        <textarea rows="4" name="comment_content" style="width: calc(100% - 56px);"></textarea>
+                        <button type="submit" class="[ btn btn-success bt-default ]" style="margin-top: 10px;
+  margin-right: 8px;">Post comment</button>
+                        <button id="btnres" type="reset" class="[ btn btn-default ]" style="margin-top: 10px;
+  margin-right: 8px;">Cancel</button>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
