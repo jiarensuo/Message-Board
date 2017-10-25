@@ -46,7 +46,7 @@ node www
 access application: http://localhost:3000 
 
 ## REST API Documentation
-| Method  | URL |Third Header|
+| Method  | URL |Description|
 | ---- | ------------- |---------------------|
 GET|`/`|homepage| 
 |POST| `/addUser` |Add new user
